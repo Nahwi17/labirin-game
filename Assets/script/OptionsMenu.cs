@@ -10,7 +10,7 @@ public class OptionsMenu : MonoBehaviour
     private void Start()
     {
         // Set slider ke nilai yang tersimpan sebelumnya
-        volumeSlider.value = PlayerPrefs.GetFloat("Volume", 1f);
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume", 10f);
         volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 
@@ -39,6 +39,6 @@ public class OptionsMenu : MonoBehaviour
         // Atur volume di sini, misalnya AudioListener.volume
         AudioListener.volume = volume;
         // Simpan nilai volume
-        PlayerPrefs.SetFloat("Volume", volume);
+        PlayerPrefs.SetFloat("", volume);
     }
 }

@@ -6,6 +6,8 @@ public class InGameOptionsManager : MonoBehaviour
 {
     public GameObject inGameOptionsPanel;
     public Slider volumeSlider;
+    public Button restartButton; // Tombol Mulai Ulang
+    public Button backButton; // Tombol Kembali
     private bool isOptionsVisible = false;
 
     void Start()
@@ -14,6 +16,10 @@ public class InGameOptionsManager : MonoBehaviour
         volumeSlider.value = PlayerPrefs.GetFloat("Volume", 1f);
         volumeSlider.onValueChanged.AddListener(SetVolume);
         inGameOptionsPanel.SetActive(false); // Awalnya panel tidak aktif
+
+        // Tambahkan listener ke tombol
+        restartButton.onClick.AddListener(RestartGame);
+        backButton.onClick.AddListener(BackToMainMenu);
     }
 
     void Update()
@@ -58,6 +64,24 @@ public class InGameOptionsManager : MonoBehaviour
     }
 
     public void QuitToMainMenu()
+    {
+        // Resume game sebelum kembali ke main menu
+        Time.timeScale = 1;
+        // Ganti "MainMenu" dengan nama scene main menu Anda
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    // Method untuk memulai ulang game
+    public void RestartGame()
+    {
+        // Resume game sebelum memulai ulang
+        Time.timeScale = 1;
+        // Ganti "Level1" dengan nama scene level pertama Anda
+        SceneManager.LoadScene("Level1");
+    }
+
+    // Method untuk kembali ke main menu
+    public void BackToMainMenu()
     {
         // Resume game sebelum kembali ke main menu
         Time.timeScale = 1;
